@@ -55,9 +55,9 @@ class TipsController extends Controller
      * @param  \App\Models\Tips  $tips
      * @return \Illuminate\Http\Response
      */
-    public function show(Tips $tips)
+    public function show(Tips $tip)
     {
-        return view('tips.show',compact('tips'));
+        return view('tips.show',compact('tip'));
     }
 
     /**
@@ -66,9 +66,9 @@ class TipsController extends Controller
      * @param  \App\Models\Tips  $tips
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tips $tips)
+    public function edit(Tips $tip)
     {
-        return view('tips.edit',compact('tips'));
+        return view('tips.edit',compact('tip'));
 
     }
 
@@ -79,14 +79,14 @@ class TipsController extends Controller
      * @param  \App\Models\Tips  $tips
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tips $tips)
+    public function update(Request $request, Tips $tip)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
         ]);
     
-        $tips->update($request->all());
+        $tip->update($request->all());
     
         return redirect()->route('tips.index')
                         ->with('success','Tip updated successfully');
@@ -98,9 +98,9 @@ class TipsController extends Controller
      * @param  \App\Models\Tips  $tips
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tips $tips)
+    public function destroy(Tips $tip)
     {
-        $tips->delete();
+        $tip->delete();
     
         return redirect()->route('tips.index')
                         ->with('success','Tip deleted successfully');

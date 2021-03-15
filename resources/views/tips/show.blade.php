@@ -1,4 +1,4 @@
-@extends('tips.layout')
+@extends('activities.layout')
   
 @section('content')
     <div class="row">
