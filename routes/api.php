@@ -15,14 +15,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
-});
+Route::namespace('Auth')->group(function () {
+    Route::get('/login','LoginController@show_login_form')->name('login');
+    Route::post('/login','LoginController@process_login')->name('login');
+    Route::get('/register','LoginController@show_signup_form')->name('register');
+    Route::post('/register','LoginController@process_signup');
+    Route::post('/logout','LoginController@logout')->name('logout');
+  });
